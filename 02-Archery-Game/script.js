@@ -2,6 +2,18 @@ var svg = document.querySelector("svg");
 var cursor = svg.createSVGPoint();
 var arrows = document.querySelector(".arrows");
 var randomAngle = 0;
+var totalScore = 0;
+
+function syncScore() {
+	if (window.GameHub) {
+		if (typeof window.GameHub.setStageScore === 'function') {
+			window.GameHub.setStageScore(totalScore);
+		}
+		if (typeof window.GameHub.recordScore === 'function') {
+			window.GameHub.recordScore('archery', totalScore, 'best');
+		}
+	}
+}
 
 // center of target
 var target = {
@@ -159,6 +171,9 @@ function hitTest(tween) {
 			selector = ".bullseye"
 		}
 		showMessage(selector);
+		var gain = selector === ".bullseye" ? 5 : 2;
+		totalScore += gain;
+		syncScore();
 	}
 
 }
@@ -166,6 +181,9 @@ function hitTest(tween) {
 function onMiss() {
 	// Damn!
 	showMessage(".miss");
+}
+
+syncScore();
 }
 
 function showMessage(selector) {

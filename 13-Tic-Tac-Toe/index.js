@@ -23,6 +23,15 @@ let currentPlayer=x;
 // Text of X or O to place in the status.
 let player="X";
 let running=false;
+let playerWins = 0;
+
+function syncScore() {
+  if (window.GameHub) {
+    const { setStageScore, recordScore } = window.GameHub;
+    if (typeof setStageScore === 'function') setStageScore(playerWins);
+    if (typeof recordScore === 'function') recordScore('tic-tac-toe', playerWins, 'best');
+  }
+}
 init();
 
 // Initially it adds click event to every box. as if we click on any of the box then it calls the boxClick function.
@@ -75,6 +84,7 @@ function restartGame(){
         box.innerHTML="";
         box.classList.remove('win');
     });
+    syncScore();
   }
 
 // Checks winner
@@ -104,14 +114,19 @@ function checkWinner(){
     statusEl.style.color = "green"
     restartBtnEl.textContent = "Play Again 😉"
     running=false;
+    playerWins += 1;
+    syncScore();
     // if the game is draw then this executes.
   }else if(!options.includes("")){
     statusEl.textContent=`Oops..! Game Draw..!`;
     statusEl.style.color = "red"
     restartBtnEl.textContent = "Play Again 😉"
     running=false;
+    syncScore();
     // else the player will change to continue the game.
   }else{
     changePlayer();
   }
 }
+
+syncScore();

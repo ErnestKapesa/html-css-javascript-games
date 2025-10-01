@@ -26,6 +26,15 @@ const game = {
   arrText: "",
 };
 
+function syncScore(score) {
+  if (window.GameHub) {
+    const { setStageScore, recordScore } = window.GameHub;
+    const value = Math.max(0, Math.floor(score || 0));
+    if (typeof setStageScore === 'function') setStageScore(value);
+    if (typeof recordScore === 'function') recordScore('typing-zen', value, 'best');
+  }
+}
+
 btn.addEventListener("click", () => {
   if (btn.textContent === "Start") {
     play();
@@ -46,6 +55,7 @@ function play() {
   btn.textContent = "Done";
   const duration = new Date();
   game.start = duration.getTime(); // unix timestamp
+  syncScore(0);
 }
 
 function end() {
@@ -57,6 +67,7 @@ function end() {
   main.style.borderColor = "white";
   main.innerHTML = `Time: ${totalTime} Score: ${correct.score} out of ${correct.total}`;
   btn.textContent = "Start";
+  syncScore(correct.score);
 }
 
 function results() {

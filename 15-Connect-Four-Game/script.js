@@ -11,6 +11,17 @@ var playerNumber = 1; // Initially player - 1 gets to start his/her turn
 var filledGrid = []; // Player board
 
 var filledCells = 0; // No. of cells that has been filled
+var playerOneWins = 0;
+var playerTwoWins = 0;
+
+function syncScore() {
+  if (window.GameHub) {
+    const best = Math.max(playerOneWins, playerTwoWins);
+    const { setStageScore, recordScore } = window.GameHub;
+    if (typeof setStageScore === 'function') setStageScore(best);
+    if (typeof recordScore === 'function') recordScore('connect-four', best, 'best');
+  }
+}
 
 for(var i = 0; i < 6; i++) {
 
@@ -62,6 +73,8 @@ function makeMove(button , buttonNo) {
 		if(playerWon(row , col , 1) === true) {
 			setTimeout(function() {
 				alert("Game Over: Green Wins");
+				playerOneWins += 1;
+				syncScore();
 				resetBoard();
 			} , 200);
 		}
@@ -81,6 +94,8 @@ function makeMove(button , buttonNo) {
 		if(playerWon(row , col , 2) === true) {
 			setTimeout(function() {
 				alert("Game Over : Red Wins");
+				playerTwoWins += 1;
+				syncScore();
 				resetBoard();
 			} , 200);
 		}
@@ -96,6 +111,7 @@ function makeMove(button , buttonNo) {
 	if(filledCells === 42) {
 		setTimeout(function() {
 			alert("Game Draw");
+			syncScore();
 			resetBoard();
 		} , 200);
 		return;
@@ -237,6 +253,10 @@ function resetBoard() {
 		for(var j = 0; j < 7; j++) {
 			filledGrid[i][j] = -1;
 		}
- 	}
+	}
+
+	syncScore();
 
 }
+
+syncScore();

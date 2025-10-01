@@ -43,6 +43,15 @@ let previousTimestamp;
 let startMoving;
 let moves;
 let stepStartTimestamp;
+let bestLane = 0;
+
+function syncStageScore() {
+  if (window.GameHub) {
+    const { setStageScore, recordScore } = window.GameHub;
+    if (typeof setStageScore === 'function') setStageScore(bestLane);
+    if (typeof recordScore === 'function') recordScore('crossy-road', bestLane, 'best');
+  }
+}
 
 const carFrontTexture = new Texture(40, 80, [{ x: 0, y: 10, w: 30, h: 60 }]);
 const carBackTexture = new Texture(40, 80, [{ x: 10, y: 10, w: 30, h: 60 }]);
@@ -140,6 +149,7 @@ const initaliseValues = () => {
 };
 
 initaliseValues();
+syncStageScore();
 
 const renderer = new THREE.WebGLRenderer({
   alpha: true,
@@ -672,6 +682,10 @@ function animate(timestamp) {
         case "forward": {
           currentLane++;
           counterDOM.innerHTML = currentLane;
+          if (currentLane > bestLane) {
+            bestLane = currentLane;
+            syncStageScore();
+          }
           break;
         }
         case "backward": {

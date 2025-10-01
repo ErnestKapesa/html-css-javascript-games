@@ -1,6 +1,16 @@
 const messageElement = document.getElementById("msg");
 
 const randomNumber = getRandomNumber();
+let attempts = 0;
+
+function syncScore() {
+  if (window.GameHub) {
+    const value = Math.max(0, 20 - attempts);
+    const { setStageScore, recordScore } = window.GameHub;
+    if (typeof setStageScore === 'function') setStageScore(value);
+    if (typeof recordScore === 'function') recordScore('speak-number', value, 'best');
+  }
+}
 
 window.SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -34,12 +44,19 @@ function checkNumber(message) {
     messageElement.innerHTML += "<div>Number must be between 1 and 100</div>";
     return;
   }
+  attempts += 1;
+  syncScore();
   if (number === randomNumber) {
-    document.body.innerHTML = `
-          <h2>Congrats! You have guessed the number! <br><br>
-          It was ${number}</h2>
-          <button class="play-again" id="play-again">Play Again</button>
-        `;
+    recognition.removeEventListener("result", onSpeak);
+    recognition.stop();
+    messageElement.innerHTML = `
+      <div>Congrats! You have guessed the number! 🎉 It was ${number}.</div>
+      <button class="play-again" id="play-again">Play Again</button>
+    `;
+    document
+      .getElementById("play-again")
+      .addEventListener("click", () => window.location.reload());
+    return;
   } else if (number > randomNumber) {
     messageElement.innerHTML += "<div>GO LOWER</div>";
   } else {
@@ -49,8 +66,10 @@ function checkNumber(message) {
 
 // Event Listeners
 recognition.addEventListener("result", onSpeak);
-recognition.addEventListener("end", () => recognition.start());
-
-document.body.addEventListener("click", (e) => {
-  if (e.target.id == "play-again") history.go(0);
+recognition.addEventListener("end", () => {
+  if (attempts === 0 || attempts < 20) {
+    recognition.start();
+  }
 });
+
+syncScore();

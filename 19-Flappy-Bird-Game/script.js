@@ -8,6 +8,10 @@ var game_mode = "prestart";
 var time_game_last_running;
 var bottom_bar_offset = 0;
 var pipes = [];
+var currentScore = 0;
+var bestScore = 0;
+
+syncScore();
 
 function MySprite(img_url) {
   this.x = 0;
@@ -125,14 +129,16 @@ function display_intro_instructions() {
   );
 }
 function display_game_over() {
-  var score = 0;
-  for (var i = 0; i < pipes.length; i++)
-    if (pipes[i].x < bird.x) score = score + 0.5;
+  currentScore = scoreFromPipes();
+  if (currentScore > bestScore) {
+    bestScore = currentScore;
+    syncScore();
+  }
   ctx.font = "30px Arial";
   ctx.fillStyle = "red";
   ctx.textAlign = "center";
   ctx.fillText("Game Over", myCanvas.width / 2, 100);
-  ctx.fillText("Score: " + score, myCanvas.width / 2, 150);
+  ctx.fillText("Score: " + currentScore, myCanvas.width / 2, 150);
   ctx.font = "20px Arial";
   ctx.fillText("Click, touch, or press to play again", myCanvas.width / 2, 300);
 }
@@ -149,6 +155,7 @@ function reset_game() {
   bird.angle = 0;
   pipes = []; // erase all the pipes from the array
   add_all_my_pipes(); // and load them back in their starting positions
+  currentScore = 0;
 }
 function add_all_my_pipes() {
   add_pipe(500, 100, 140);
@@ -188,6 +195,11 @@ function Do_a_Frame() {
       make_bird_tilt_appropriately();
       make_bird_slow_and_fall();
       check_for_end_game();
+      currentScore = scoreFromPipes();
+      if (currentScore > bestScore) {
+        bestScore = currentScore;
+        syncScore();
+      }
       break;
     }
     case "over": {
@@ -205,3 +217,21 @@ bird.x = myCanvas.width / 3;
 bird.y = myCanvas.height / 2;
 
 setInterval(Do_a_Frame, 1000 / FPS);
+function scoreFromPipes() {
+  var score = 0;
+  for (var i = 0; i < pipes.length; i++) {
+    if (pipes[i].x < bird.x) score = score + 0.5;
+  }
+  return Math.floor(score);
+}
+
+function syncScore() {
+  if (window.GameHub) {
+    if (typeof window.GameHub.setStageScore === 'function') {
+      window.GameHub.setStageScore(bestScore);
+    }
+    if (typeof window.GameHub.recordScore === 'function') {
+      window.GameHub.recordScore('flappy', bestScore, 'best');
+    }
+  }
+}

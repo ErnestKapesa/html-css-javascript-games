@@ -1,4 +1,13 @@
 const game = { timer: 0, start: null };
+let bestTime = null;
+
+function syncScore() {
+  if (!window.GameHub) return;
+  const { setStageScore, recordScore } = window.GameHub;
+  const value = bestTime ? Math.round((1 / bestTime) * 1000) : 0;
+  if (typeof setStageScore === 'function') setStageScore(value);
+  if (typeof recordScore === 'function') recordScore('shape-clicker', value, 'best');
+}
 
 // Create Message Element
 const message = document.createElement("div");
@@ -23,6 +32,8 @@ box.addEventListener("click", () => {
     const current = new Date().getTime();
     const duration = (current - game.start) / 1000;
     message.textContent = `It took ${duration} seconds to click`;
+    bestTime = bestTime === null ? duration : Math.min(bestTime, duration);
+    syncScore();
   }
 });
 
@@ -42,3 +53,5 @@ function addBox() {
   box.style.top = randomNumbers(container.height - dim[1]) + "px";
   box.style.borderRadius = randomNumbers(50) + "%";
 }
+
+syncScore();

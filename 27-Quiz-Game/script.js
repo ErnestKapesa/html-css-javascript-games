@@ -131,6 +131,14 @@ let currentQuestion = 0;
 let score = 0;
 let incorrectAnswers = [];
 
+function syncScore() {
+  if (window.GameHub) {
+    const { setStageScore, recordScore } = window.GameHub;
+    if (typeof setStageScore === 'function') setStageScore(score);
+    if (typeof recordScore === 'function') recordScore('quiz', score, 'best');
+  }
+}
+
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -178,6 +186,7 @@ function checkAnswer() {
     const answer = selectedOption.value;
     if (answer === quizData[currentQuestion].answer) {
       score++;
+      syncScore();
     } else {
       incorrectAnswers.push({
         question: quizData[currentQuestion].question,
@@ -213,6 +222,7 @@ function retryQuiz() {
   showAnswerButton.style.display = "none";
   resultContainer.innerHTML = "";
   displayQuestion();
+  syncScore();
 }
 
 function showAnswer() {
@@ -244,3 +254,4 @@ retryButton.addEventListener("click", retryQuiz);
 showAnswerButton.addEventListener("click", showAnswer);
 
 displayQuestion();
+syncScore();

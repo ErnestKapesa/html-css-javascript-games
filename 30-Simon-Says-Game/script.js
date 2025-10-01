@@ -5,6 +5,14 @@ let level = 0;
 let clickCount = 0;
 let gameStarted = false;
 
+function syncScore() {
+  if (window.GameHub) {
+    const { setStageScore, recordScore } = window.GameHub;
+    if (typeof setStageScore === 'function') setStageScore(level);
+    if (typeof recordScore === 'function') recordScore('simon-says', level, 'best');
+  }
+}
+
 document.getElementById("start-btn").addEventListener("click", startGame);
 
 function startGame() {
@@ -19,6 +27,7 @@ function startGame() {
 
     showMyTexts();
     nextSequence();
+    syncScore();
   }
 }
 
@@ -28,6 +37,7 @@ function nextSequence() {
   document.getElementById("click-count").textContent = clickCount;
   level++;
   document.getElementById("status").textContent = `Level ${level}`;
+  syncScore();
 
   // Clear the sequence display at the start of each level
   document.getElementById("sequence-display").textContent = "-";
@@ -133,6 +143,7 @@ function checkAnswer(currentLevel) {
       gamePattern = [];
       document.getElementById("sequence-display").textContent = "-";
       document.getElementById("click-count").textContent = 0;
+      syncScore();
     }, 1500);
   }
 }

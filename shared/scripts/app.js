@@ -15,13 +15,13 @@
     { id: 'ping-pong', title: 'Pulse Pong Arena', path: '07-Ping-Pong-Game/index.html', icon: 'assets/icons/ping-pong.svg', tagline: 'Retro volleys with neon flair.' },
     { id: 'tetris', title: 'Tactrix Shift', path: '08-Tetris-Game/index.html', icon: 'assets/icons/tetris.svg', tagline: 'Fit falling tiles with precision.', scoreSelector: '#score span', scoreMode: 'best' },
     { id: 'tilting-maze', title: 'Gyro Maze Dash', path: '09-Tilting-Maze-Game/index.html', icon: 'assets/icons/tilting-maze.svg', tagline: 'Tilt the grid, guide the glow.' },
-    { id: 'memory-cards', title: 'Synapse Flip', path: '10-Memory-Card-Game/index.html', icon: 'assets/icons/memory.svg', tagline: 'Match symbols in rapid recall.' },
+    { id: 'memory-cards', title: 'Synapse Flip', path: '10-Memory-Card-Game/index.html', icon: 'assets/icons/memory-cards.svg', tagline: 'Match symbols in rapid recall.' },
     { id: 'rps', title: 'Gesture Clash', path: '11-Rock-Paper-Scissors/index.html', icon: 'assets/icons/rps.svg', tagline: 'Predict and outplay in 3 moves.' },
     { id: 'number-guess', title: 'NumLock Guess', path: '12-Type-Number-Guessing-Game/index.html', icon: 'assets/icons/number-guess.svg', tagline: 'Crack the secret digits fast.' },
     { id: 'tic-tac-toe', title: 'Triad Tactics', path: '13-Tic-Tac-Toe/index.html', icon: 'assets/icons/tic-tac-toe.svg', tagline: 'Build the winning line first.' },
     { id: 'snake', title: 'Pulse Serpent', path: '14-Snake-Game/index.html', icon: 'assets/icons/snake.svg', tagline: 'Grow the neon snake, dodge walls.', scoreSelector: '.score', scoreMode: 'best' },
     { id: 'connect-four', title: 'Connect Fusion', path: '15-Connect-Four-Game/index.html', icon: 'assets/icons/connect-four.svg', tagline: 'Stack four cores in a row.' },
-    { id: 'insect-catch', title: 'Lumina Bugs', path: '16-Insect-Catch-Game/index.html', icon: 'assets/icons/insect.svg', tagline: 'Tap the critters before they vanish.', scoreSelector: '#score', scoreMode: 'best' },
+    { id: 'insect-catch', title: 'Lumina Bugs', path: '16-Insect-Catch-Game/index.html', icon: 'assets/icons/insect-catch.svg', tagline: 'Tap the critters before they vanish.', scoreSelector: '#score', scoreMode: 'best' },
     { id: 'typing-trainer', title: 'Type Surge', path: '17-Typing-Game/index.html', icon: 'assets/icons/typing-trainer.svg', tagline: 'Push your words-per-minute higher.', scoreSelector: '#score', scoreMode: 'best' },
     { id: 'hangman', title: 'Cipher Hangout', path: '18-Hangman-Game/index.html', icon: 'assets/icons/hangman.svg', tagline: 'Decode the word before the timer.' },
     { id: 'flappy', title: 'Sky Hopper', path: '19-Flappy-Bird-Game/index.html', icon: 'assets/icons/flappy.svg', tagline: 'Glide through gates with perfect rhythm.' },
@@ -34,7 +34,7 @@
     { id: 'fruit-slicer', title: 'Fruit Vortex', path: '26-Fruit-Slicer-Game/index.html', icon: 'assets/icons/fruit-slicer.svg', tagline: 'Slice every fruit, dodge the bombs.', scoreSelector: '#scoreValue', scoreMode: 'best' },
     { id: 'quiz', title: 'Quiz Pulse', path: '27-Quiz-Game/index.html', icon: 'assets/icons/quiz.svg', tagline: 'Answer quick-fire trivia sets.' },
     { id: 'emoji-catcher', title: 'Emoji Drift', path: '28-Emoji-Catcher-Game/index.html', icon: 'assets/icons/emoji-catcher.svg', tagline: 'Catch the smiling sprites mid-air.', scoreSelector: '#score', scoreMode: 'best' },
-    { id: 'whack-a-mole', title: 'Mole Voltage', path: '29-Whack-A-Mole-Game/index.html', icon: 'assets/icons/whack-a-mole.svg', tagline: 'Tap the moles before they dip.' },
+    { id: 'whack-a-mole', title: 'Mole Voltage', path: '29-Whack-A-Mole-Game/index.html', icon: 'assets/icons/whack-a-mole.svg', tagline: 'Tap the moles before they dip.', scoreSelector: '.score', scoreMode: 'best' },
     { id: 'simon-says', title: 'Pattern Echo', path: '30-Simon-Says-Game/index.html', icon: 'assets/icons/simon-says.svg', tagline: 'Echo the light pattern flawlessly.' }
   ];
 
@@ -699,11 +699,12 @@
     const grid = document.querySelector('[data-game-grid]');
     if (!grid) return;
     grid.innerHTML = '';
-    state.games.forEach((game) => {
+    state.games.forEach((game, index) => {
       const card = document.createElement('a');
       card.className = 'mc-gamecard';
       card.href = state.activeUser ? game.path : '#signupAnchor';
       card.dataset.gameId = game.id;
+      card.style.setProperty('--card-index', index);
       card.innerHTML = `
         <div class="mc-gamecard__icon">
           <img src="${game.icon}" alt="${game.title} icon" loading="lazy" />

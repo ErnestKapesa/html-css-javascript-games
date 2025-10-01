@@ -6,12 +6,22 @@ const rollHistoryEl = document.getElementById("roll-history");
 
 let historyList = [];
 
+function syncScore() {
+  if (window.GameHub) {
+    const value = historyList.length;
+    const { setStageScore, recordScore } = window.GameHub;
+    if (typeof setStageScore === 'function') setStageScore(value);
+    if (typeof recordScore === 'function') recordScore('dice-roll', value, 'best');
+  }
+}
+
 function rollDice() {
   const rollResult = Math.floor(Math.random() * 6) + 1;
   const diceFace = getDiceFace(rollResult);
   diceEl.innerHTML = diceFace;
   historyList.push(rollResult);
   updateRollHistory();
+  syncScore();
 }
 
 function updateRollHistory() {
@@ -51,3 +61,5 @@ buttonEl.addEventListener("click", () => {
     rollDice();
   }, 1000);
 });
+
+syncScore();

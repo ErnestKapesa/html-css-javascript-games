@@ -67,6 +67,29 @@
           </div>
         </section>
 
+        <section class="mc-leaderboard mc-leaderboard--hero" id="leaderboard">
+          <div class="mc-leaderboard__head">
+            <div>
+              <h2>Arcade Leaders</h2>
+              <p class="mc-field__hint">Live standings across every Mobile City title.</p>
+            </div>
+            <a class="mc-btn mc-btn--ghost" href="#games">Play &amp; Climb →</a>
+          </div>
+          <table class="mc-table">
+            <thead>
+              <tr>
+                <th scope="col">Rank</th>
+                <th scope="col">Gamer Tag</th>
+                <th scope="col">Points</th>
+              </tr>
+            </thead>
+            <tbody data-leaderboard-body></tbody>
+          </table>
+          <div class="mc-empty" data-leaderboard-empty>
+            <p>No scores yet. Be the first to collect points across the arcade!</p>
+          </div>
+        </section>
+
         <section class="mc-auth-grid" id="signupAnchor">
           <article class="mc-auth" data-auth-block>
             <div class="mc-auth__headline">
@@ -145,26 +168,6 @@
                 Unlock exclusive layouts by finishing community challenges before the timer runs out.
               </p>
             </article>
-          </div>
-        </section>
-
-        <section class="mc-leaderboard" id="leaderboard">
-          <div class="mc-auth__headline">
-            <h2>Global Leaderboard</h2>
-            <span class="mc-field__hint">Ranks update as soon as players earn new points.</span>
-          </div>
-          <table class="mc-table">
-            <thead>
-              <tr>
-                <th scope="col">Rank</th>
-                <th scope="col">Gamer Tag</th>
-                <th scope="col">Points</th>
-              </tr>
-            </thead>
-            <tbody data-leaderboard-body></tbody>
-          </table>
-          <div class="mc-empty" data-leaderboard-empty>
-            <p>No scores yet. Be the first to collect points across the arcade!</p>
           </div>
         </section>
       </div>

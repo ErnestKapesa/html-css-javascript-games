@@ -6,6 +6,14 @@ let lastHole;
 let timeUp = false;
 let score = 0;
 
+function syncScore() {
+  if (window.GameHub) {
+    const { setStageScore, recordScore } = window.GameHub;
+    if (typeof setStageScore === 'function') setStageScore(score);
+    if (typeof recordScore === 'function') recordScore('whack-a-mole', score, 'best');
+  }
+}
+
 function randomTime(min, max) {
   return Math.round(Math.random() * (max - min) + min);
 }
@@ -39,6 +47,7 @@ function startGame() {
   score = 0;
   button.style.visibility = "hidden";
   peep();
+  syncScore();
   setTimeout(() => {
     timeUp = true;
     button.innerHTML = "Try again?";
@@ -51,6 +60,8 @@ function bonk(e) {
   score++;
   this.classList.remove("up");
   scoreBoard.textContent = score;
+  syncScore();
 }
 
 moles.forEach((mole) => mole.addEventListener("click", bonk));
+syncScore();

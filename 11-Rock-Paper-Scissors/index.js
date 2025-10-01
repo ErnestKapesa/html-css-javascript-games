@@ -8,6 +8,14 @@ const computerPointsEl = document.querySelector(".computer-points");
 let userPoints= 0;
 let computerPoints = 0;
 
+function syncScore() {
+  if (window.GameHub) {
+    const { setStageScore, recordScore } = window.GameHub;
+    if (typeof setStageScore === "function") setStageScore(userPoints);
+    if (typeof recordScore === "function") recordScore('rps', userPoints, 'best');
+  }
+}
+
 imgEls.forEach((img) => {
   img.addEventListener("click", () => {
     const computerTurn = computerChoice();
@@ -36,10 +44,14 @@ function gamePlay(userSelection, computerSelection) {
   ) {
     userPoints++;
     userPointsEl.textContent = userPoints;
+    syncScore();
     return "Hurrah! You win..! " + userSelection + " beats " + computerSelection;
   } else {
     computerPoints++;
     computerPointsEl.textContent = computerPoints;
+    syncScore();
     return "Oops! You lose...! " + computerSelection + " beats " + userSelection;
   }
 }
+
+syncScore();

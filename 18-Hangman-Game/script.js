@@ -39,6 +39,16 @@ let playable = true;
 
 const correctLetters = [];
 const wrongLetters = [];
+let wins = 0;
+let losses = 0;
+
+function syncScore() {
+  if (window.GameHub) {
+    const { setStageScore, recordScore } = window.GameHub;
+    if (typeof setStageScore === 'function') setStageScore(wins);
+    if (typeof recordScore === 'function') recordScore('hangman', wins, 'best');
+  }
+}
 
 function displayWord() {
   wordElement.innerHTML = `
@@ -59,6 +69,8 @@ function displayWord() {
     finalMessageRevealWord.innerText = "";
     popup.style.display = "flex";
     playable = false;
+    wins += 1;
+    syncScore();
   }
 }
 
@@ -78,6 +90,8 @@ function updateWrongLettersElement() {
     finalMessageRevealWord.innerText = `...the word was: ${selectedWord}`;
     popup.style.display = "flex";
     playable = false;
+    losses += 1;
+    syncScore();
   }
 }
 
@@ -119,7 +133,9 @@ playAgainButton.addEventListener("click", () => {
   displayWord();
   updateWrongLettersElement();
   popup.style.display = "none";
+  syncScore();
 });
 
 // Init
 displayWord();
+syncScore();

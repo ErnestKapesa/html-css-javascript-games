@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title>shape-clicker icon</title>
+  <rect width="128" height="128" rx="32" fill="#a855f7" />
+  
+    <rect x="10" y="10" width="108" height="108" rx="28" fill="#a855f7" />
+    <circle cx="46" cy="46" r="16" fill="#fb7185" />
+    <rect x="66" y="34" width="20" height="24" rx="6" fill="#38bdf8" />
+    <path d="M36 70h56" stroke="#fde047" stroke-width="12" stroke-linecap="round" />
+  
+</svg>

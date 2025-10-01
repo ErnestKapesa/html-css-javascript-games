@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title>candy-crush icon</title>
+  <rect width="128" height="128" rx="32" fill="#f472b6" />
+  
+    <rect x="10" y="10" width="108" height="108" rx="28" fill="#f472b6" />
+    <g transform="translate(20 24)">
+      <circle cx="20" cy="24" r="14" fill="#ff73a7" />
+      <rect x="44" y="12" width="26" height="24" rx="12" fill="#ffd166" />
+      <circle cx="84" cy="28" r="12" fill="#20d3ff" />
+      <rect x="14" y="52" width="58" height="18" rx="9" fill="#a855f7" />
+      <circle cx="86" cy="64" r="10" fill="#f97316" />
+    </g>
+  
+</svg>

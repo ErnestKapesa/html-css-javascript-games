@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title>simon-says icon</title>
+  <rect width="128" height="128" rx="32" fill="#0ea5e9" />
+  
+    <rect x="10" y="10" width="108" height="108" rx="28" fill="#0ea5e9" />
+    <circle cx="64" cy="64" r="34" fill="#0f172a" />
+    <path d="M64 30a34 34 0 0 1 24 10L64 64z" fill="#22d3ee" />
+    <path d="M88 40a34 34 0 0 1 0 48L64 64z" fill="#22c55e" />
+    <path d="M88 88a34 34 0 0 1-48 0L64 64z" fill="#facc15" />
+    <path d="M40 88a34 34 0 0 1 0-48L64 64z" fill="#fb7185" />
+  
+</svg>

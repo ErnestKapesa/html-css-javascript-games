@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Mobile City Game Zone</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="shared/styles/app.css" />
+    <link rel="icon" type="image/png" href="logo.png" />
+  </head>
+  <body data-mcgz-context="hub" data-theme="dark">
+    <header class="mc-topbar">
+      <div class="mc-topbar__inner">
+        <a
+          class="mc-logo"
+          href="https://mobilecityphonesparadise.com/"
+          target="_blank"
+          rel="noopener"
+        >
+          <img src="logo.png" alt="Mobile City Game Zone" />
+          <span>Mobile City Game Zone</span>
+        </a>
+        <nav class="mc-nav" aria-label="Primary">
+          <a href="#hot">Hot</a>
+          <a href="#games">Games</a>
+          <a href="#addons">Add-ons</a>
+          <a href="#leaderboard">Leaderboard</a>
+        </nav>
+        <div class="mc-topbar__actions">
+          <button class="mc-toggle" type="button" aria-pressed="false" data-theme-toggle>
+            <span class="mc-sr">Toggle theme</span>
+            <span aria-hidden="true">☀️</span>
+          </button>
+          <div class="mc-userpill" role="presentation">
+            <span class="mc-userpill__avatar" data-avatar>MC</span>
+            <div class="mc-userpill__meta">
+              <strong data-username>Guest Player</strong>
+              <span><span data-userpoints>0</span> pts collected</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="mc-shell">
+      <div class="mc-shell__inner">
+        <section class="mc-spotlight" id="hot">
+          <div class="mc-spotlight__header">
+            <h1>Tonight’s Hot Picks</h1>
+            <p>
+              Rotate through our most-played challenges and jump in instantly. Each spotlight card
+              shows what makes the game electric on mobile.
+            </p>
+            <div class="mc-spotlight__controls">
+              <button class="mc-btn mc-btn--ghost" type="button" data-spotlight-prev>⟵ Prev</button>
+              <button class="mc-btn" type="button" data-spotlight-next>Next ⟶</button>
+            </div>
+          </div>
+          <div class="mc-spotlight__viewport" data-spotlight>
+            <div class="mc-spotlight__track" data-spotlight-track></div>
+          </div>
+        </section>
+
+        <section class="mc-auth-grid" id="signupAnchor">
+          <article class="mc-auth" data-auth-block>
+            <div class="mc-auth__headline">
+              <h2 data-auth-title>Create your player profile</h2>
+              <span class="mc-field__hint">One gamer tag unlocks every game.</span>
+            </div>
+            <form data-auth-form>
+              <div class="mc-field">
+                <label for="gamerName">Gaming Name</label>
+                <input
+                  id="gamerName"
+                  name="gamerName"
+                  type="text"
+                  maxlength="24"
+                  placeholder="Enter your gamer tag"
+                  required
+                  autocomplete="nickname"
+                />
+                <p class="mc-field__hint">Use 3-24 characters, letters & spaces only.</p>
+              </div>
+              <button class="mc-btn" type="submit" data-auth-submit>Sign Up &amp; Play</button>
+            </form>
+            <p class="mc-toggle-auth">
+              <button type="button" data-toggle-auth>Already have an account? Tap here to log in.</button>
+            </p>
+          </article>
+          <aside class="mc-highlights" aria-label="Arcade enhancements">
+            <div class="mc-highlight-card">
+              <h3>Daily Boost Missions</h3>
+              <p>Collect extra points by clearing mission streaks – refreshed every time you log in.</p>
+            </div>
+            <div class="mc-highlight-card">
+              <h3>Touch-First Controls</h3>
+              <p>Every title here is tuned for thumb play, vibration-ready, and tilt aware where it matters.</p>
+            </div>
+            <div class="mc-highlight-card">
+              <h3>Zero Install</h3>
+              <p>Hop between games without leaving the zone; we keep your scores synced and ready.</p>
+            </div>
+          </aside>
+        </section>
+
+        <section class="mc-games" id="games">
+          <h2>Featured Games</h2>
+          <p class="mc-tagline">Thirty vivid HTML5 experiences curated for Mobile City players.</p>
+          <div class="mc-grid" data-game-grid></div>
+        </section>
+
+        <section class="mc-bento" id="addons">
+          <div class="mc-auth__headline">
+            <h2>Arcade Add-ons</h2>
+            <span class="mc-field__hint">Enhance your session with our built-in boosters.</span>
+          </div>
+          <div class="mc-bento__grid">
+            <article class="mc-bento__card">
+              <h3>Chroma Challenges</h3>
+              <p>
+                Weekly rotating objectives that double your point pull when you conquer the combo.
+              </p>
+            </article>
+            <article class="mc-bento__card">
+              <h3>Party Watch</h3>
+              <p>
+                Spectate friends in real time and throw emojis straight into their game board.
+              </p>
+            </article>
+            <article class="mc-bento__card">
+              <h3>Pulse Alerts</h3>
+              <p>
+                Opt-in notifications ping you when rival scores inch past your best runs.
+              </p>
+            </article>
+            <article class="mc-bento__card">
+              <h3>Creator Skins</h3>
+              <p>
+                Unlock exclusive layouts by finishing community challenges before the timer runs out.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="mc-leaderboard" id="leaderboard">
+          <div class="mc-auth__headline">
+            <h2>Global Leaderboard</h2>
+            <span class="mc-field__hint">Ranks update as soon as players earn new points.</span>
+          </div>
+          <table class="mc-table">
+            <thead>
+              <tr>
+                <th scope="col">Rank</th>
+                <th scope="col">Gamer Tag</th>
+                <th scope="col">Points</th>
+              </tr>
+            </thead>
+            <tbody data-leaderboard-body></tbody>
+          </table>
+          <div class="mc-empty" data-leaderboard-empty>
+            <p>No scores yet. Be the first to collect points across the arcade!</p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="mc-footer">
+      Powered by
+      <a href="https://chromapixelgames.com/" target="_blank" rel="noopener">Chroma Pixel Games</a>
+    </footer>
+
+    <script src="shared/scripts/app.js" defer></script>
+  </body>
+</html>

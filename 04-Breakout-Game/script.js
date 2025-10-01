@@ -78,6 +78,9 @@ function drawPaddle() {
 function drawScore() {
   ctx.font = '20px "Balsamiq Sans"';
   ctx.fillText(`Score: ${score}`, canvas.width - 100, 30);
+  if (window.GameHub && typeof window.GameHub.setStageScore === 'function') {
+    window.GameHub.setStageScore(score);
+  }
 }
 
 function drawBricks() {
@@ -150,11 +153,17 @@ function moveBall() {
   if (ball.y + ball.size > canvas.height) {
     showAllBricks();
     score = 0;
+    if (window.GameHub && typeof window.GameHub.recordScore === 'function') {
+      window.GameHub.recordScore('breakout', score, 'best');
+    }
   }
 }
 
 function increaseScore() {
   score++;
+  if (window.GameHub && typeof window.GameHub.recordScore === 'function') {
+    window.GameHub.recordScore('breakout', score, 'best');
+  }
   if (score % (brickRowCount * brickRowCount) === 0) {
     // no remainder
     showAllBricks();

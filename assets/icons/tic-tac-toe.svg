@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title>tic-tac-toe icon</title>
+  <rect width="128" height="128" rx="32" fill="#60a5fa" />
+  
+    <rect x="10" y="10" width="108" height="108" rx="28" fill="#60a5fa" />
+    <g stroke="#fff" stroke-width="8" stroke-linecap="round" fill="none" transform="translate(32 32)">
+      <path d="M0 20h64M0 44h64M20 0v64M44 0v64" />
+      <path d="M6 6l28 28" />
+      <path d="M34 6l28 28" />
+      <circle cx="50" cy="50" r="10" />
+    </g>
+  
+</svg>

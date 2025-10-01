@@ -4,6 +4,14 @@ let matched = 0;
 let cardOne, cardTwo;
 let disableDeck = false;
 
+function syncScore() {
+    if (window.GameHub) {
+        const { setStageScore, recordScore } = window.GameHub;
+        if (typeof setStageScore === "function") setStageScore(matched);
+        if (typeof recordScore === "function") recordScore('memory-cards', matched, 'best');
+    }
+}
+
 function flipCard({target: clickedCard}) {
     if(cardOne !== clickedCard && !disableDeck) {
         clickedCard.classList.add("flip");
@@ -21,6 +29,7 @@ function flipCard({target: clickedCard}) {
 function matchCards(img1, img2) {
     if(img1 === img2) {
         matched++;
+        syncScore();
         if(matched == 8) {
             setTimeout(() => {
                 return shuffleCard();
@@ -56,6 +65,7 @@ function shuffleCard() {
         imgTag.src = `images/img-${arr[i]}.png`;
         card.addEventListener("click", flipCard);
     });
+    syncScore();
 }
 
 shuffleCard();

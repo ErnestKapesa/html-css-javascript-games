@@ -8,6 +8,7 @@ function candyCrushGame() {
     const scoreDisplay = document.getElementById("score");
     const timerDisplay = document.getElementById("timer");
     const modeSelection = document.getElementById("modeSelection");
+    const scoreboardPanel = document.querySelector(".scoreBoard");
     const endlessButton = document.getElementById("endlessMode");
     const timedButton = document.getElementById("timedMode");
     const changeModeButton = document.getElementById("changeMode");
@@ -187,8 +188,8 @@ function candyCrushGame() {
     function startGame(mode) {
         currentMode = mode;
         modeSelection.style.display = "none";
-        grid.style.display = "flex";
-        scoreDisplay.parentElement.style.display = "flex"; // Show scoreboard
+        grid.classList.add("is-active");
+        scoreboardPanel.classList.add("is-active");
         createBoard();
         score = 0;
         scoreDisplay.innerHTML = score;
@@ -234,8 +235,8 @@ function candyCrushGame() {
         if (currentMode === "timed") {
             clearInterval(timerInterval);
         }
-        grid.style.display = "none";
-        scoreDisplay.parentElement.style.display = "none";
+        grid.classList.remove("is-active");
+        scoreboardPanel.classList.remove("is-active");
         modeSelection.style.display = "flex"; // Show mode selection screen
     }
 

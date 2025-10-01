@@ -1,38 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <title>Talha - Candy Crush</title>
-
-    <!-- 👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻-->
-    <!-- Also uploaded the demo of this code in a gif : https://c.tenor.com/x8v1oNUOmg4AAAAd/tenor.gif-->
-    <!-- 👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻-->
-
-    <!-- 👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻-->
-    <!-- More html-css-js Games Calculators Games Cards Elements Projects on https://www.github.com/he-is-talha --> 
-    <!-- 👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻-->
-
-    <link rel="icon" href="https://i.ibb.co/M6KTWnf/pic.jpg">
-
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
-    <script src="script.js" charset="utf-8"></script>
-  </head>
-  <body>
-    <!-- Mode Selection Screen -->
-    <div id="modeSelection">
-      <h2>Choose Game Mode</h2>
-      <button id="endlessMode">Endless Mode</button>
-      <button id="timedMode">Timed Mode</button>
-    </div>
-    <!-- Scoreboard with Timer and Change Mode Button -->
-    <div class="scoreBoard">
-      <h3>score</h3>
-      <h1 id="score">0</h1>
-      <div id="timer"></div>
-      <button id="changeMode">Change Mode</button>
-    </div>
-    <!-- Game Grid -->
-    <div class="grid"></div>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Candy Match Remix</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../logo.png" />
+    <link rel="stylesheet" href="../shared/styles/app.css" />
+    <link rel="stylesheet" href="style.css" />
+      <link rel="stylesheet" href="../shared/styles/game-shell.css" />
+</head>
+  <body data-mcgz-context="game"
+    data-mcgz-game-id="candy-crush"
+    data-mcgz-score-selector="#score"
+    data-mcgz-score-mode="best">
+    <main class="cc-wrapper">
+      <div id="modeSelection" class="cc-mode" role="dialog" aria-modal="true">
+        <h2>Choose Game Mode</h2>
+        <button id="endlessMode" class="mc-btn mc-btn--primary">Endless Mode</button>
+        <button id="timedMode" class="mc-btn mc-btn--ghost">Timed Mode</button>
+      </div>
+      <section class="scoreBoard" aria-live="polite">
+        <div class="scoreBoard__item">
+          <h3>Score</h3>
+          <h1 id="score">0</h1>
+        </div>
+        <div class="scoreBoard__item">
+          <div id="timer" aria-live="polite"></div>
+          <button id="changeMode" class="mc-btn mc-btn--ghost">Change Mode</button>
+        </div>
+      </section>
+      <div class="grid" role="grid" aria-label="Candy board"></div>
+    </main>
+    <script src="../shared/scripts/app.js" defer></script>
+    <script src="script.js" charset="utf-8" defer></script>
   </body>
 </html>

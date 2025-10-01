@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title>connect-four icon</title>
+  <rect width="128" height="128" rx="32" fill="#6366f1" />
+  
+    <rect x="10" y="10" width="108" height="108" rx="28" fill="#6366f1" />
+    <circle cx="28" cy="32" r="8" fill="#38bdf8" /><circle cx="46" cy="32" r="8" fill="#fbbf24" /><circle cx="64" cy="32" r="8" fill="#38bdf8" /><circle cx="82" cy="32" r="8" fill="#fbbf24" /><circle cx="28" cy="52" r="8" fill="#fbbf24" /><circle cx="46" cy="52" r="8" fill="#38bdf8" /><circle cx="64" cy="52" r="8" fill="#fbbf24" /><circle cx="82" cy="52" r="8" fill="#38bdf8" /><circle cx="28" cy="72" r="8" fill="#38bdf8" /><circle cx="46" cy="72" r="8" fill="#fbbf24" /><circle cx="64" cy="72" r="8" fill="#38bdf8" /><circle cx="82" cy="72" r="8" fill="#fbbf24" />
+  
+</svg>

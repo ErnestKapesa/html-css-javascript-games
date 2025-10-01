@@ -54,6 +54,13 @@ function startGame() {
   }
 
   console.log(board);
+  tilesClicked = 0;
+  if (window.GameHub && typeof window.GameHub.setStageScore === 'function') {
+    window.GameHub.setStageScore(tilesClicked);
+    if (typeof window.GameHub.recordScore === 'function') {
+      window.GameHub.recordScore('minesweeper', tilesClicked, 'best');
+    }
+  }
 }
 
 function setFlag() {
@@ -85,6 +92,9 @@ function clickTile() {
     // alert("GAME OVER");
     gameOver = true;
     revealMines();
+    if (window.GameHub && typeof window.GameHub.recordScore === 'function') {
+      window.GameHub.recordScore('minesweeper', tilesClicked, 'best');
+    }
     return;
   }
 
@@ -116,6 +126,11 @@ function checkMine(r, c) {
 
   board[r][c].classList.add("tile-clicked");
   tilesClicked += 1;
+  if (window.GameHub) {
+    const { recordScore, setStageScore } = window.GameHub;
+    if (typeof setStageScore === 'function') setStageScore(tilesClicked);
+    if (typeof recordScore === 'function') recordScore('minesweeper', tilesClicked, 'best');
+  }
 
   let minesFound = 0;
 
@@ -157,6 +172,9 @@ function checkMine(r, c) {
   if (tilesClicked == rows * columns - minesCount) {
     document.getElementById("mines-count").innerText = "Cleared";
     gameOver = true;
+    if (window.GameHub && typeof window.GameHub.recordScore === 'function') {
+      window.GameHub.recordScore('minesweeper', tilesClicked, 'best');
+    }
   }
 }
 

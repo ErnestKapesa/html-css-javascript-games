@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title>tetris icon</title>
+  <rect width="128" height="128" rx="32" fill="#c084fc" />
+  
+    <rect x="10" y="10" width="108" height="108" rx="28" fill="#c084fc" />
+    <g transform="translate(32 32)" fill="#fff">
+      <rect width="20" height="20" rx="4" fill="#fb7185" />
+      <rect x="24" width="20" height="20" rx="4" fill="#38bdf8" />
+      <rect x="48" width="20" height="20" rx="4" fill="#facc15" />
+      <rect x="24" y="24" width="20" height="20" rx="4" fill="#22c55e" />
+      <rect x="48" y="24" width="20" height="20" rx="4" fill="#a855f7" />
+    </g>
+  
+</svg>

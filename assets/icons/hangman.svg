@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title>hangman icon</title>
+  <rect width="128" height="128" rx="32" fill="#f97316" />
+  
+    <rect x="10" y="10" width="108" height="108" rx="28" fill="#f97316" />
+    <path d="M40 88h48M48 88V32h28M76 32v12" stroke="#0f172a" stroke-width="8" stroke-linecap="round" />
+    <circle cx="76" cy="52" r="10" fill="#f87171" />
+    <path d="M76 62v22" stroke="#f87171" stroke-width="8" stroke-linecap="round" />
+  
+</svg>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title>fruit-slicer icon</title>
+  <rect width="128" height="128" rx="32" fill="#f43f5e" />
+  
+    <rect x="10" y="10" width="108" height="108" rx="28" fill="#f43f5e" />
+    <circle cx="52" cy="56" r="20" fill="#22c55e" />
+    <path d="M36 42c14 8 22 8 32 2" stroke="#f8fafc" stroke-width="4" stroke-linecap="round" />
+    <polygon points="74,40 98,28 86,52" fill="#fb7185" />
+    <rect x="46" y="74" width="40" height="8" rx="4" transform="rotate(-18 66 78)" fill="#fde047" />
+  
+</svg>

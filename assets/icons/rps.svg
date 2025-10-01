@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title>rps icon</title>
+  <rect width="128" height="128" rx="32" fill="#facc15" />
+  
+    <rect x="10" y="10" width="108" height="108" rx="28" fill="#facc15" />
+    <g transform="translate(28 28)">
+      <circle cx="18" cy="18" r="14" fill="#f97316" />
+      <rect x="32" y="36" width="36" height="24" rx="12" fill="#0ea5e9" />
+      <path d="M12 52c10-14 20-14 30 0" stroke="#facc15" stroke-width="12" stroke-linecap="round" fill="none" />
+    </g>
+  
+</svg>

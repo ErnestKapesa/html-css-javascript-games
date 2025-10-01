@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title>archery icon</title>
+  <rect width="128" height="128" rx="32" fill="#38bdf8" />
+  
+    <rect x="10" y="10" width="108" height="108" rx="28" fill="#38bdf8" />
+    <circle cx="64" cy="64" r="30" fill="#fde047" />
+    <circle cx="64" cy="64" r="20" fill="#f97316" />
+    <circle cx="64" cy="64" r="10" fill="#0ea5e9" />
+    <path d="M26 42l48 22" stroke="#0f172a" stroke-width="6" stroke-linecap="round" />
+    <polygon points="80,60 108,50 92,78" fill="#0f172a" />
+  
+</svg>

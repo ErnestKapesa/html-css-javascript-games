@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title>emoji-catcher icon</title>
+  <rect width="128" height="128" rx="32" fill="#facc15" />
+  
+    <rect x="10" y="10" width="108" height="108" rx="28" fill="#facc15" />
+    <circle cx="58" cy="56" r="26" fill="#facc15" />
+    <circle cx="48" cy="48" r="4" fill="#0f172a" />
+    <circle cx="68" cy="48" r="4" fill="#0f172a" />
+    <path d="M48 66c6 6 14 6 20 0" stroke="#0f172a" stroke-width="6" stroke-linecap="round" />
+    <path d="M80 88l14-28" stroke="#38bdf8" stroke-width="8" stroke-linecap="round" />
+  
+</svg>

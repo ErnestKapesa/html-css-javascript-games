@@ -90,6 +90,8 @@ let accelerationX;
 let accelerationY;
 let frictionX;
 let frictionY;
+let runStart = null;
+let lastElapsedSeconds = 0;
 
 const pathW = 25; // Path width
 const wallW = 10; // Wall width
@@ -241,6 +243,11 @@ joystickHeadElement.addEventListener("mousedown", function (event) {
     mouseStartX = event.clientX;
     mouseStartY = event.clientY;
     gameInProgress = true;
+    runStart = performance.now();
+    lastElapsedSeconds = 0;
+    if (window.GameHub && typeof window.GameHub.setStageScore === 'function') {
+      window.GameHub.setStageScore(0);
+    }
     window.requestAnimationFrame(main);
     noteElement.style.opacity = 0;
     joystickHeadElement.style.cssText = `
@@ -316,6 +323,11 @@ function resetGame() {
   accelerationY = undefined;
   frictionX = undefined;
   frictionY = undefined;
+  runStart = null;
+  lastElapsedSeconds = 0;
+  if (window.GameHub && typeof window.GameHub.setStageScore === 'function') {
+    window.GameHub.setStageScore(0);
+  }
 
   mazeElement.style.cssText = `
         transform: rotateY(0deg) rotateX(0deg)
@@ -377,6 +389,16 @@ function resetGame() {
 function main(timestamp) {
   // It is possible to reset the game mid-game. This case the look should stop
   if (!gameInProgress) return;
+
+  if (runStart !== null) {
+    const elapsed = Math.max(0, Math.floor((timestamp - runStart) / 1000));
+    if (elapsed !== lastElapsedSeconds) {
+      lastElapsedSeconds = elapsed;
+      if (window.GameHub && typeof window.GameHub.setStageScore === 'function') {
+        window.GameHub.setStageScore(elapsed);
+      }
+    }
+  }
 
   if (previousTimestamp === undefined) {
     previousTimestamp = timestamp;
@@ -662,6 +684,9 @@ function main(timestamp) {
           </p>`;
       noteElement.style.opacity = 1;
       gameInProgress = false;
+      if (window.GameHub && typeof window.GameHub.recordScore === 'function') {
+        window.GameHub.recordScore('tilting-maze', lastElapsedSeconds, 'best');
+      }
     } else {
       previousTimestamp = timestamp;
       window.requestAnimationFrame(main);
@@ -674,6 +699,9 @@ function main(timestamp) {
           </p>`;
       noteElement.style.opacity = 1;
       gameInProgress = false;
+      if (window.GameHub && typeof window.GameHub.recordScore === 'function') {
+        window.GameHub.recordScore('tilting-maze', lastElapsedSeconds, 'best');
+      }
     } else throw error;
   }
 }

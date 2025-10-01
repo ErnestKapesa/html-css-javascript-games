@@ -18,9 +18,11 @@
 	<link rel="icon" href="https://i.ibb.co/M6KTWnf/pic.jpg">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../shared/styles/app.css" />
+    <link rel="stylesheet" href="../shared/styles/game-shell.css" />
 </head>
 
-<body>
+<body data-mcgz-context="game" data-mcgz-game-id="number-guess">
 
     <h1>Number Guessing Game</h1>
     <div class="container">
@@ -31,7 +33,8 @@
         <p class="chances">You have only <span class="chance">10</span> chances</p>
     </div>
 
-    <script src="index.js"></script>
+        <script src="../shared/scripts/app.js" defer></script>
+<script defer src="index.js"></script>
 </body>
 
 </html>

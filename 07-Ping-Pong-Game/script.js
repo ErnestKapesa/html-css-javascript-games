@@ -48,6 +48,15 @@ var leftPlayerScore = 0;
 var rightPlayerScore = 0;
 var maxScore = 10;
 
+function syncScore() {
+  const best = Math.max(leftPlayerScore, rightPlayerScore);
+  if (window.GameHub) {
+    const { recordScore, setStageScore } = window.GameHub;
+    if (typeof setStageScore === 'function') setStageScore(best);
+    if (typeof recordScore === 'function') recordScore('ping-pong', best, 'best');
+  }
+}
+
 // Listen for keyboard events
 document.addEventListener("keydown", keyDownHandler);
 document.addEventListener("keyup", keyUpHandler);
@@ -137,9 +146,11 @@ function update() {
   if (ballX < 0) {
     rightPlayerScore++;
     reset();
+    syncScore();
   } else if (ballX > canvas.width) {
     leftPlayerScore++;
     reset();
+    syncScore();
   }
 
   // Check if a player has won
@@ -155,6 +166,7 @@ function playerWin(player) {
   $("#message").text(message); // Set the message text
   $("#message-modal").modal("show"); // Display the message modal
   reset();
+  syncScore();
 }
 
 // Reset ball to center of screen
@@ -164,6 +176,8 @@ function reset() {
   ballSpeedX = -ballSpeedX;
   ballSpeedY = Math.random() * 10 - 5;
 }
+
+syncScore();
 
 // Draw objects on canvas
 function draw() {
